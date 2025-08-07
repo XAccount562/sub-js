@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jexxsoft - Solusi Digital & IT di Manado</title>
+
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Material Symbols Outlined -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* CSS Custom Properties (Variables) untuk Dark Mode */
+        :root {
+            --background-color: #121212;
+            --surface-color: #1e1e1e;
+            --primary-color: #03a9f4; /* Biru terang */
+            --primary-variant-color: #0288d1;
+            --on-background-color: #e0e0e0;
+            --on-surface-color: #e0e0e0;
+            --accent-color: #5d3fd3; /* Ungu */
+            --text-color: #e0e0e0;
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            --border-radius: 12px;
+            --container-width: 1200px;
+        }
+
+        /* Styling dasar untuk body dan elemen umum */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header dan Navbar */
+        header {
+            background-color: var(--surface-color);
+            padding: 16px 0;
+            box-shadow: 0 2px 5px var(--shadow-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            text-decoration: none;
+        }
+        
+        .logo-img {
+            max-height: 40px; /* Ukuran maksimal logo */
+            width: auto;
+        }
+
+        nav a {
+            color: var(--on-surface-color);
+            text-decoration: none;
+            margin-left: 24px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            /* Mengganti placeholder dengan URL gambar yang lebih relevan */
+            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.8)), url('https://images.unsplash.com/photo-1549692520-acc6669e2f0c?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+        }
+
+        .hero-content h1 {
+            font-size: 64px;
+            font-weight: 700;
+            margin: 0;
+            color: var(--primary-color);
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--on-background-color);
+            margin-top: 16px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            padding: 14px 32px;
+            margin-top: 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background-color: var(--accent-color);
+            box-shadow: 0 5px 15px rgba(93, 63, 211, 0.3);
+        }
+
+        /* Section Title & Subtitle */
+        .section-title {
+            font-size: 40px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--on-background-color);
+            margin-bottom: 40px;
+        }
+
+        /* Card Grid Layout */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background-color: var(--surface-color);
+            padding: 32px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 10px var(--shadow-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: left;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px var(--shadow-color);
+        }
+
+        .card-icon {
+            font-variation-settings: 'FILL' 1;
+            font-size: 48px;
+            color: var(--accent-color);
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin: 0 0 12px 0;
+        }
+        
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 16px;
+        }
+
+        .card ul li {
+            position: relative;
+            padding-left: 32px;
+            margin-bottom: 8px;
+        }
+
+        .card ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* Contact Section */
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--surface-color);
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--on-surface-color);
+            font-weight: 500;
+            transition: transform 0.2s, background-color 0.2s;
+            gap: 12px;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        .social-link:hover {
+            transform: translateY(-2px);
+            background-color: var(--primary-color);
+            color: var(--on-background-color);
+        }
+
+        .social-link .fa-brands, .social-link .fa-solid {
+            font-size: 24px;
+            color: var(--accent-color);
+            transition: color 0.2s;
+        }
+        
+        .social-link:hover .fa-brands, .social-link:hover .fa-solid {
+            color: var(--on-surface-color);
+        }
+
+        .social-links-container {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--surface-color);
+            padding: 24px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        /* Media Queries untuk responsif */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 48px;
+            }
+            .hero-content p {
+                font-size: 18px;
+            }
+            .section-title {
+                font-size: 32px;
+            }
+            nav {
+                display: none; /* Sembunyikan navbar di mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="#" class="logo">
+                <!-- Ganti URL di bawah ini dengan URL logo .png Anda -->
+                <!-- <img src="https://placehold.co/150x50/03a9f4/1e1e1e?text=JEXXSOFT+Logo" alt="Logo Jexxsoft" class="logo-img"> -->
+                <img src="/img/mainthings/jexxsoftwares LOGO 1.jpg" alt="Logo Jexxsoft" class="logo-img">
+            </a>
+            <nav>
+                <a href="#services">Layanan</a>
+                <a href="#why-us">Tentang Kami</a>
+                <a href="#contact">Kontak</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container hero-content">
+            <h1>jexxsoft</h1>
+            <p>Mitra terpercaya Anda dalam Software & App Development, UI/UX, dan IT Support di Manado, Sulawesi Utara.</p>
+            <a href="#contact" class="btn">Hubungi Kami</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title text-center">Layanan Kami</h2>
+            <p class="section-subtitle text-center">Kami menawarkan berbagai solusi teknologi untuk mengembangkan bisnis Anda.</p>
+            <div class="card-grid">
+                <!-- Card: Software & App Development -->
+                <div class="card">
+                    <span class="material-symbols-outlined card-icon">developer_mode</span>
+                    <h4 class="card-title">Pengembangan Perangkat Lunak & Aplikasi</h4>
+                    <p>Kami mengubah ide Anda menjadi aplikasi desktop dan web yang fungsional dan berkinerja tinggi. Tim ahli kami menggunakan teknologi terkini untuk menciptakan solusi yang skalabel dan aman.</p>
+                    <ul>
+                        <li>Sistem informasi</li>
+                        <li>Aplikasi manajemen internal perusahaan</li>
+                        <li>Sistem kebutuhan event</li>
+                    </ul>
+                </div>
+                <!-- Card: UI/UX Development -->
+                <div class="card">
+                    <span class="material-symbols-outlined card-icon">design_services</span>
+                    <h4 class="card-title">Pengembangan UI/UX</h4>
+                    <p>Tampilan yang menarik dan pengalaman pengguna yang mulus adalah kunci kesuksesan produk digital. Kami merancang antarmuka yang intuitif dan mudah digunakan.</p>
+                    <ul>
+                        <li>Desain ulang antarmuka aplikasi atau website</li>
+                        <li>Pembuatan prototipe interaktif</li>
+                        <li>Riset pengalaman pengguna (UX research)</li>
+                    </ul>
+                </div>
+                <!-- Card: IT Support -->
+                <div class="card">
+                    <span class="material-symbols-outlined card-icon">support_agent</span>
+                    <h4 class="card-title">Dukungan IT</h4>
+                    <p>Fokus pada bisnis inti Anda, biarkan kami mengurus infrastruktur IT Anda. Kami menyediakan layanan dukungan teknis yang cepat dan efisien.</p>
+                    <ul>
+                        <li>Manajemen jaringan dan server</li>
+                        <li>Pemeliharaan sistem IT</li>
+                        <li>Bantuan teknis untuk karyawan</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section id="why-us" class="section">
+        <div class="container">
+            <h2 class="section-title text-center">Mengapa Memilih Jexxsoft?</h2>
+            <div class="card-grid">
+                <!-- Card: Berbasis Lokal -->
+                <div class="card">
+                    <span class="material-symbols-outlined card-icon">location_on</span>
+                    <h4 class="card-title">Berbasis Lokal</h4>
+                    <p>Kami memahami pasar dan kebutuhan bisnis di Manado dan sekitarnya, sehingga solusi kami lebih relevan dan personal.</p>
+                </div>
+                <!-- Card: Tim Profesional -->
+                <div class="card">
+                    <span class="material-symbols-outlined card-icon">group</span>
+                    <h4 class="card-title">Tim Profesional</h4>
+                    <p>Tim kami terdiri dari pengembang dan desainer berpengalaman yang selalu mengikuti tren teknologi terbaru.</p>
+                </div>
+                <!-- Card: Kualitas Terbaik -->
+                <div class="card">
+                    <span class="material-symbols-outlined card-icon">verified</span>
+                    <h4 class="card-title">Kualitas Terbaik</h4>
+                    <p>Kami berkomitmen untuk memberikan hasil kerja berkualitas tinggi yang melebihi ekspektasi dan memenuhi standar industri.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container text-center">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <p class="section-subtitle">Siap untuk membawa bisnis Anda ke level berikutnya? Hubungi kami melalui media sosial di bawah ini.</p>
+            
+            <div class="social-links-container">
+                <a href="https://wa.me/6285159556468?text=Halo%20admin,%20saya%20datang%20dari%20website%20js.alphacast.id!" target="_blank" class="social-link">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                </a>
+                <!-- <a href="https://instagram.com/jexxsoft" target="_blank" class="social-link">
+                    <i class="fa-brands fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://www.linkedin.com/company/jexxsoft" target="_blank" class="social-link">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                    <span>LinkedIn</span>
+                </a> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 jexxsoft. Semua hak dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk efek scroll -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.section');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
